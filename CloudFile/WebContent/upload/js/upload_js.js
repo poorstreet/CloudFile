@@ -172,7 +172,12 @@ function drawProgress(progress){
 	context.stroke(); 
 	}
 }
+/**
+ * 	//上传文件信息，启动文件分片合并fileMerge 
+ */	
+function fileMerge(){
 	
+}
 /**
 *“上传”按钮响应函数，
 */
