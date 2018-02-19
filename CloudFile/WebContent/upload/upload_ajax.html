@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/upload_js.js"></script>
+<title>文件上传</title>
+</head>
+<body>
+<p>请选择您需要上传的文件</p>
+<p>注意：只能在同一目录下一次选择多个文件</p>
+<input id="files" type="file" multiple="multiple" onchange="showFileList(this.files)"/> 
+<input id="uploadBtn" type="button"  value="上传"  onclick="doUpload()"/>
+<div id="filesList">
+</div>
+<div>
+<canvas id="drawing" width="420" height="420" style="border:#0F0 solid 1px">A Drawing of something</canvas> 
+</div>
+<div>
+<p id="message"></p>
+</div>
+</body>
+</html>
