@@ -37,9 +37,9 @@ public class UploadHander_Ajax extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		ServletContext contex = request.getServletContext();
-		String uploadTemp =contex.getRealPath("/WEB-INF/UploadTemp");
-		String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
+		ServletContext context = request.getServletContext();
+		String uploadTemp =context.getRealPath("/WEB-INF/UploadTemp");
+		String tempPath = context.getRealPath("/WEB-INF/temp");
 		File tmpFile = new File(tempPath);
 	     if (!tmpFile.exists()) {
 	      //创建临时目录
@@ -83,7 +83,20 @@ public class UploadHander_Ajax extends HttpServlet {
 		    	  else{//如果fileitem中封装的是上传文件
 		    		  System.out.print("发现文件");
 		    		  in = item.getInputStream();
-		    		  continue;
+		    		  String tempSavePath = makePath(uploadTemp,map.get("uuid"),map.get("fileName"),map.get("currChunk"));
+		    		  FileOutputStream out = new FileOutputStream(tempSavePath);
+		    		  byte buffer[] = new byte[1024];
+					        //判断输入流中的数据是否已经读完的标识        
+					  int len = 0;
+					        //循环将输入流读入到缓冲区当中，(len=in.read(buffer))>0就表示in里面还有数据
+					  while((len=in.read(buffer))>0){
+					        //使用FileOutputStream输出流将缓冲区的数据写入到指定的目录(savePath + "\\" + filename)当中
+					       out.write(buffer, 0, len);
+					  }
+					 in.close();
+					 out.close(); 
+					 item.delete();
+		    		  //continue;
 		        //得到上传的文件名称，
 		       /* fileName = item.getName();
 		        System.out.println(fileName);
@@ -95,18 +108,7 @@ public class UploadHander_Ajax extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		         String tempSavePath = makePath(uploadTemp,map.get("uuid"),map.get("fileName"),map.get("currChunk"));
-		    	 FileOutputStream out = new FileOutputStream(tempSavePath);
-		    	 byte buffer[] = new byte[1024];
-			        //判断输入流中的数据是否已经读完的标识        
-			     int len = 0;
-			        //循环将输入流读入到缓冲区当中，(len=in.read(buffer))>0就表示in里面还有数据
-			     while((len=in.read(buffer))>0){
-			         //使用FileOutputStream输出流将缓冲区的数据写入到指定的目录(savePath + "\\" + filename)当中
-			         out.write(buffer, 0, len);
-			        }
-		    	in.close();
-		    	out.close(); 
+		         
 		        //注意：不同的浏览器提交的文件名是不一样的，有些浏览器提交上来的文件名是带有路径的，如： c:\a\b\1.txt，而有些只是单纯的文件名，如：1.txt
 		        //处理获取到的上传文件的文件名的路径部分，只保留文件名部分
 		       /* fileName = fileName.substring(fileName.lastIndexOf("\\")+1);

@@ -234,7 +234,14 @@ function doUpload() {
 		drawProgress(rate);
 		if(uploader0.status==1 && uploader1.status == 1 && uploader2.status == 1 && uploader3.status == 1){
 			clearInterval(uploadCompleteMonitor);
-			$("#message").text("上传成功！！");
+			$("#message").text("文件分片上传成功！！正在合并文件分片。。。");
+			var MergeMessage = $.ajax({
+				type:"Get",
+				url:"/CloudFile/MergeFieServlet",
+				data:"",
+				async:false
+				}).responseText;
+			$("#message").text(MergeMessage);
 		}
 	},1000);
  }
