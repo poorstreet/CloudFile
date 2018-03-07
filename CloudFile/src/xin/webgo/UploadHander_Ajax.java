@@ -161,8 +161,9 @@ public class UploadHander_Ajax extends HttpServlet {
 		doGet(request, response);
 	}
 	public String makePath(String temPath,String uuid,String fileName,String currChunk) {
-	     //得到上传文件的扩展名
+	     
 		 String filename = fileName.substring(0, fileName.lastIndexOf("."));
+		//得到上传文件的扩展名
 	     String fileExtName = fileName.substring(fileName.lastIndexOf("."));
 	     String dir = temPath+"\\"+uuid+"\\";
 	     File file = new File(dir);

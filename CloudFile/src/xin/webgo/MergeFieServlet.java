@@ -73,7 +73,7 @@ public class MergeFieServlet extends HttpServlet {
 	}
 	/**
 	 * 文件合并方法
-	 * @param fpath：需合并的文件所在的文件夹路劲
+	 * @param fpath：需合并的文件所在的文件夹路经
 	 * @param resultPath：合并后文件所在的路径
 	 * @return 0：输入目录或输出目录有误；1：文件合并成功；2：文件操作异常，合并失败
 	 */
@@ -89,19 +89,23 @@ public class MergeFieServlet extends HttpServlet {
 		}
 		if(inputDir.exists() && inputDir.isDirectory()) {
 			//获取输入目录下的文件
-			File [] files = inputDir.listFiles();
+			String [] files = inputDir.list();
 			if(files == null) {
 				System.out.println("输入目录没有文件分片");
 				return 0;		
 			}
-			//Arrays.sort(files);
+			//分片排序
+			//Arrays.sort(files);排序结果错误
+			
 			try {
-				String fileName = files[0].getName();
-				File out = new File(resultPath,fileName);
+				String fileName = files[0].substring(0,files[0].lastIndexOf("_"));
+				String extName =  files[0].substring(files[0].lastIndexOf("."));
+				File out = new File(resultPath,fileName + extName);
 				FileOutputStream outStream = new FileOutputStream(out, true);			
 		        FileChannel resultFileChannel =outStream.getChannel();
-		        for(File file:files ) {
+		        for(int i=0;i<files.length;i++ ) {
 		        	//File chunk= new File(filePath);
+		        	String file = fpath + "\\" + fileName + "_" + Integer.toString(i) + extName;
 		        	FileInputStream inStream =new FileInputStream(file);
 		        	FileChannel chunkChannel = inStream.getChannel();
 			        resultFileChannel.transferFrom(chunkChannel, resultFileChannel.size(), chunkChannel.size());
