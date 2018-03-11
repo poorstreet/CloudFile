@@ -23,14 +23,14 @@ import com.sun.net.httpserver.HttpContext;
 /**
  * Servlet implementation class MergeFieServlet
  */
-@WebServlet(description = "用于文件分片的合并", urlPatterns = { "/MergeFieServlet" })
-public class MergeFieServlet extends HttpServlet {
+@WebServlet(description = "用于文件分片的合并", urlPatterns = { "/MergeFileServlet" })
+public class MergeFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MergeFieServlet() {
+    public MergeFileServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,6 +58,8 @@ public class MergeFieServlet extends HttpServlet {
 					response.setCharacterEncoding("utf-8");
 					PrintWriter writer = response.getWriter();
 					writer.write("合并成功，文件成功上传");
+					//清空缓存的文件分片
+					
 					}	
 			}
 			

@@ -7,6 +7,7 @@ var uuidArray = new Array();//文件UUID值
 var filesArray;//文件数组，保存输入的文件对象
 var total;//上传总数据量
 var totalProgress=0;//总上传进度
+
 /**
 * 用户选择文件之后的响应函数，将文件信息展示在页面，同时对大文件的切块大小、块的起止进行计算、入列等
 */
@@ -172,12 +173,7 @@ function drawProgress(progress){
 	context.stroke(); 
 	}
 }
-/**
- * 	//上传文件信息，启动文件分片合并fileMerge 
- */	
-function fileMerge(){
-	
-}
+
 /**
 *“上传”按钮响应函数，
 */
@@ -231,16 +227,21 @@ function doUpload() {
 		console.log(totalProgress + "  " + total);
 		var rate =Math.floor(totalProgress/ total*100);
 		drawProgress(rate);
-		if(uploader0.status==1 && uploader1.status == 1 && uploader2.status == 1 && uploader3.status == 1){
-			clearInterval(uploadCompleteMonitor);
-			$("#message").text("文件分片上传成功！！正在合并文件分片。。。");
-			var MergeMessage = $.ajax({
+		if(uploader0.status==1 && uploader1.status == 1 && uploader2.status == 1 && uploader3.status == 1 && rate == 100){
+			$("#message").text("文件分片上传成功！正在合并文件分片。。。");
+			$.ajax({
 				type:"Get",
-				url:"/CloudFile/MergeFieServlet",
+				url:"/CloudFile/MergeFileServlet",
 				data:"",
-				async:false
-				}).responseText;
-			$("#message").text(MergeMessage);
+				async:true,
+				success:function(data,textStatus){
+					$("#message").text("文件合并成功，成功上传！")	
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown){
+					$("#message").text("文件合并失败，请重新上传！")
+			       }
+				});	
+			clearInterval(uploadCompleteMonitor);
 		}
 	},1000);
  }
