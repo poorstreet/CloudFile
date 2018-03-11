@@ -5,19 +5,119 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/upload_js.js"></script>
 <title>文件上传</title>
+<style type="text/css">
+#header {
+	background-color: #FFFFFF;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	width: 100%;
+	border-bottom-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
+#logo {
+	margin-left: 250px;
+	float: left;
+	display: inline-block;
+	height: 115px;
+	width: 200px;
+}
+
+#menu {
+	height: 115px;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+#menuul {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#menuul li {
+	display: inline-block;
+	width: 152px;
+	height: 115px;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 35px;
+}
+#upload {
+	margin-right: 100px;
+	margin-left: 100px;
+	background-color: #ffffff;
+	margin-top: 115px;
+	display: block;
+	height: 542px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
+#choose{
+width:400px;
+display: inline-block;
+vertical-align:top;
+}
+#choose-text{
+margin-top:30px;
+margin-bottom:30px;
+}
+#filesList{
+padding-left:60px;
+text-align: left;
+}
+#progress{
+width:300px;
+display: inline-block;
+vertical-align:top;
+}
+</style>
 </head>
 <body>
-<p>请选择您需要上传的文件</p>
-<p>注意：只能在同一目录下一次选择多个文件</p>
-<input id="files" type="file" multiple="multiple" onchange="showFileList(this.files)"/> 
-<input id="uploadBtn" type="button"  value="上传"  onclick="doUpload()"/>
-<div id="filesList">
-</div>
-<div>
-<canvas id="drawing" width="420" height="420" style="border:#0F0 solid 1px">A Drawing of something</canvas> 
-</div>
-<div>
-<p id="message" ></p>
-</div>
+	<div class="sidebar">
+		<div id="header">
+			<div id="logo">
+				<img src="../img/myicon.jpg" alt="CloudFileLogo" width="200px" />
+			</div>
+			<div id="menu">
+				<ul id="menuul">
+					<li><a><span>首页<br />Home
+						</span></a></li>
+					<li><a><span>关于我们<br />About Us
+						</span></a></li>
+					<li><a><span>文件上传<br />File Upload
+						</span></a></li>
+					<li><a><span>文件上传<br />File Download
+						</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="mainpage">
+		<div id="upload">
+			<div id="choose">
+			<div id="choose-text">
+				<p>请选择您需要上传的文件</p>
+				<p>注意：只能在同一目录下一次选择多个文件</p>
+			</div>
+			<div>
+				<input id="files" type="file" multiple="multiple" onchange="showFileList(this.files)" /> 
+				<input id="uploadBtn" type="button" value="上传" onclick="doUpload()"/>
+			</div>
+				<div id="filesList"></div>
+			</div>
+			<div id="progress">
+				<div id="progressBar">
+					<canvas id="drawing" width="100" height="100">您的浏览器不支持canvas</canvas>
+				</div>
+				<div id="progressMessage">
+					<p id="message"></p>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

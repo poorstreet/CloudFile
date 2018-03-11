@@ -1,203 +1,236 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 
 <title>CloudFile</title>
-<meta name="keywords" content="CloudFile 云盘 网络U盘"/>
-<meta name="description" content="CloudFile专注文件转存，文件在线查看，下载"/>
+<meta name="keywords" content="CloudFile 云盘 网络U盘" />
+<meta name="description" content="CloudFile专注文件转存，文件在线查看，下载" />
 <!--css中宽度高度的设定指的是其box内容的大小，比例是指其内容占box的比例 -->
 <style>
+#header {
+	background-color: #FFFFFF;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	width: 100%;
+	border-bottom-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
 
-#header{
-background-color:#FFFFFF;
-top:0px;
-left:0px;
-position:fixed;
-width:100%;
-border-bottom-style:solid;
-border-width:2px;
-border-color:#787878;
+#logo {
+	margin-left: 250px;
+	float: left;
+	display: inline-block;
+	height: 115px;
+	width: 200px;
 }
-#logo{
-margin-left:250px;
-float:left;
-display:inline-block;
-height:115px;
-width:200px;
-}
-#menu{
-height:115px;
-margin-left:50px;
-display:inline-block;
-}
-#menuul{
-margin-top:0px;
-margin-left:0px;
-padding-left:0px;
-}
-#menuul li{
-display:inline-block;
-width:152px;
-height:115px;
-text-align:center;
-font-size:15px;
-padding-top:35px;
-}
-#home{
-margin-right:100px;
-margin-left:100px;
-background-color:#ffffff;
-margin-top:115px;
-display:block;
-height:542px;
-text-align:center;
-border-style:solid;
-border-width:2px;
-border-color:#787878;
-}
-#home-text{
-text-align:center;
-height:543px;
-display:inline-block;
 
+#menu {
+	height: 115px;
+	margin-left: 50px;
+	display: inline-block;
 }
-#name-1{
-font-family:"Times New Roman",Times,serif;
-font-size:70px;
-margin-top:150px;
-margin-bottom:0px;
+
+#menuul {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
 }
-#text-des{
-margin-top:20px;
-font-size:25px;
-line-height:180%;
+
+#menuul li {
+	display: inline-block;
+	width: 152px;
+	height: 115px;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 35px;
 }
-#us{
-margin-right:100px;
-margin-left:100px;
-background-color:#ffffff;
-margin-top:115px;
-height:542px;
-display:block;
-border-style:solid;
-border-width:2px;
-border-color:#787878;
+
+#home {
+	margin-right: 100px;
+	margin-left: 100px;
+	background-color: #ffffff;
+	margin-top: 115px;
+	display: block;
+	height: 542px;
+	text-align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #787878;
 }
-#name-2{
-margin-top:80px;
-font-size:25px;
-text-align:center;
+
+#home-text {
+	text-align: center;
+	height: 543px;
+	display: inline-block;
 }
-#name-2 span{
-font-family:"Times New Roman",Times,serif;
+
+#name-1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 70px;
+	margin-top: 150px;
+	margin-bottom: 0px;
 }
-.do0{
-margin-top:50px;
+
+#text-des {
+	margin-top: 20px;
+	font-size: 25px;
+	line-height: 180%;
 }
-.do{
-height:300px;
-width:300px;
-margin-left:200px;
-text-align:center;
-display:inline-block;
-border-style:solid;
-border-width:1px;
-border-color:#787878;
+
+#us {
+	margin-right: 100px;
+	margin-left: 100px;
+	background-color: #ffffff;
+	margin-top: 115px;
+	height: 542px;
+	display: block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #787878;
 }
-#att{
-text-align:center;
-display:block;
+
+#name-2 {
+	margin-top: 80px;
+	font-size: 25px;
+	text-align: center;
 }
-.tit{
-font-size:20px;
+
+#name-2 span {
+	font-family: "Times New Roman", Times, serif;
 }
-.p-1{
-font-size:15px;
+
+.do0 {
+	margin-top: 50px;
 }
-.file{
-margin-right:100px;
-margin-left:100px;
-background-color:#ffffff;
-margin-top:115px;
-height:542px;
-display:block;
-border-style:solid;
-border-width:2px;
-border-color:#787878;
+
+.do {
+	height: 300px;
+	width: 300px;
+	margin-left: 200px;
+	text-align: center;
+	display: inline-block;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #787878;
 }
-.button{
-margin:210px 510px;
-background-color:#0B4AB1;
-text-align:center;
-width:100px;
-padding:25px 30px;
-border-style:outset;
-border-width:3px;
-border-color:#0B4AB1;
-border-radius:20px;
+
+#att {
+	text-align: center;
+	display: block;
 }
-.button a{
-text-decoration:none;
-font-size:20px;
-color:#FFFFFF;
+
+.tit {
+	font-size: 20px;
+}
+
+.p-1 {
+	font-size: 15px;
+}
+
+.file {
+	margin-right: 100px;
+	margin-left: 100px;
+	background-color: #ffffff;
+	margin-top: 115px;
+	height: 542px;
+	display: block;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
+
+.button {
+	margin: 210px 510px;
+	background-color: #0B4AB1;
+	text-align: center;
+	width: 100px;
+	padding: 25px 30px;
+	border-style: outset;
+	border-width: 3px;
+	border-color: #0B4AB1;
+	border-radius: 20px;
+}
+
+.button a {
+	text-decoration: none;
+	font-size: 20px;
+	color: #FFFFFF;
+}
 </style>
 </head>
 <body>
-<div class="sidebar">
-	<div id="header">
-		<div id="logo">
-		<img src="img/myicon.jpg" alt="CloudFileLogo" width="200px"  />
-		</div>
-		<div id="menu">
-			<ul id="menuul">
-				<li><a><span>首页<br />Home</span></a></li>
-				<li><a><span>关于我们<br />About Us</span></a></li>
-				<li><a><span>文件上传<br />File Upload</span></a></li>
-				<li><a><span>文件上传<br />File Download</span></a></li>				
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="mainpage">
-	<div id ="home">
-		<div id="home-text">
-			<p id="name-1">Cloud File</p>
-			<p id="text-des">文件网络转存<br />带给你不一样的速度体验</p>
-		</div>
-	</div>
-	<div id ="us">
-		<div>
-		<p id="name-2"><span>Cloud File</span> 能做什么?</p>
-		<div class="do0">
-			<div class="do">
-			<p class="tit"><b>文件转存</b></p>
-			<p class="p-1">网盘限速 U盘忘带？</p>
-			<p class="p-1">没关系！您可以高速上传文件到Cloud File,之后可凭随机码通过浏览器高速下载，不限速！</p>
+	<div class="sidebar">
+		<div id="header">
+			<div id="logo">
+				<img src="img/myicon.jpg" alt="CloudFileLogo" width="200px" />
 			</div>
-			<div class="do">
-			<p class="tit"><b>在线查看</b>（正在开发）</p>
-			<p class="p-1">暂时使用的文件?</p>
-			<p class="p-1">Cloud File能让您的文件随时随地在任何用户机查看，看文件，看电影。。。都不是事！</p>
+			<div id="menu">
+				<ul id="menuul">
+					<li><a><span>首页<br />Home
+						</span></a></li>
+					<li><a><span>关于我们<br />About Us
+						</span></a></li>
+					<li><a><span>文件上传<br />File Upload
+						</span></a></li>
+					<li><a><span>文件上传<br />File Download
+						</span></a></li>
+				</ul>
 			</div>
 		</div>
-		<div id="att">
-			<p><b></>注意</b>：CloudFile将根据您的选择，到期自动删除文件</p>
-		</div>
-		</div>
 	</div>
-	<div  id ="upload" class="file">
-		<div class="button">
-		<a href="upload/upload_ajax.html" target="_blank">上传文件</a>
+	<div class="mainpage">
+		<div id="home">
+			<div id="home-text">
+				<p id="name-1">Cloud File</p>
+				<p id="text-des">
+					文件网络转存<br />带给你不一样的速度体验
+				</p>
+			</div>
 		</div>
-	</div>
-	<div  id ="download" class="file">
-		<div class="button" >
-			<a href="filecheck.jsp" target="_blank">查看文件</a>
+		<div id="us">
+			<div>
+				<p id="name-2">
+					<span>Cloud File</span> 能做什么?
+				</p>
+				<div class="do0">
+					<div class="do">
+						<p class="tit">
+							<b>文件转存</b>
+						</p>
+						<p class="p-1">网盘限速 U盘忘带？</p>
+						<p class="p-1">没关系！您可以高速上传文件到Cloud File,之后可凭随机码通过浏览器高速下载，不限速！</p>
+					</div>
+					<div class="do">
+						<p class="tit">
+							<b>在线查看</b>（正在开发）
+						</p>
+						<p class="p-1">暂时使用的文件?</p>
+						<p class="p-1">Cloud File能让您的文件随时随地在任何用户机查看，看文件，看电影。。。都不是事！</p>
+					</div>
+				</div>
+				<div id="att">
+					<p>
+						<b></>注意</b>：CloudFile将根据您的选择，到期自动删除文件
+					</p>
+				</div>
+			</div>
 		</div>
-	</div>
+		<div id="upload" class="file">
+			<div class="button">
+				<a href="upload/upload_ajax.html" target="_blank">上传文件</a>
+			</div>
+		</div>
+		<div id="download" class="file">
+			<div class="button">
+				<a href="filecheck.jsp" target="_blank">查看文件</a>
+			</div>
+		</div>
 
-</div>
+	</div>
 </body>
 </html>

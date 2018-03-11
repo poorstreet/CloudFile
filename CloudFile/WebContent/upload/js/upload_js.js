@@ -163,13 +163,13 @@ function drawProgress(progress){
 	context.font="bold 14px Arial";  
 	context.textAlign="center";  
 	context.textBaseline="middle";//文本的基线  
-	context.fillText(progress+"%",120,120); 
+	context.fillText(progress+"%",50,50); 
 	//开始路径  
 	context.beginPath();  
 	//绘制外圆
-	context.arc(100,100,99,0,2*Math.PI,false);
+	context.arc(50,50,50,0,2*Math.PI,false);
 	//绘制内圆
-	context.arc(100,100,90,0,2*Math.PI*progress/100,false);
+	context.arc(50,50,43,0,2*Math.PI*progress/100,false);
 	context.stroke(); 
 	}
 }
@@ -227,8 +227,9 @@ function doUpload() {
 		console.log(totalProgress + "  " + total);
 		var rate =Math.floor(totalProgress/ total*100);
 		drawProgress(rate);
+		$("#message").text("分片正在上传。。。");
 		if(uploader0.status==1 && uploader1.status == 1 && uploader2.status == 1 && uploader3.status == 1 && rate == 100){
-			$("#message").text("文件分片上传成功！正在合并文件分片。。。");
+			$("#message").text("分片上传成功！正在合并文件。。。");
 			$.ajax({
 				type:"Get",
 				url:"/CloudFile/MergeFileServlet",
