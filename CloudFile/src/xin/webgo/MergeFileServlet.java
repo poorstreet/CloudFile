@@ -42,16 +42,16 @@ public class MergeFileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		ServletContext context = request.getServletContext();
-		String uploadTemp = context.getRealPath("/WEB-INF/UploadTemp");
-		String upload = context.getRealPath("/WEB-INF/UploadFile");
-		Set uuidSet = (Set) request.getSession().getAttribute("filesUUID");
-		Iterator it = uuidSet.iterator();
+		String uploadTemp = context.getRealPath("/WEB-INF/UploadTemp/" );
+		String upload = context.getRealPath("/WEB-INF/UploadFile/" );
+		Set<String> uuidSet = (Set) request.getSession().getAttribute("filesUUID");
+		Iterator<String> it = uuidSet.iterator();
 		while(it.hasNext()) {
 			String uuid = it.next().toString();
 			System.out.println(uuid);
 			if(uuid != null) {
-				String tempPath = uploadTemp + "\\" + uuid + "\\";
-				String uploadPath = upload +"\\" + uuid + "\\";
+				String tempPath = uploadTemp + uuid + File.separator;
+				String uploadPath = upload;
 				int result = mergeFiles(tempPath,uploadPath);
 				if(result==1) {
 					System.out.println("合并成功");
@@ -95,10 +95,7 @@ public class MergeFileServlet extends HttpServlet {
 			if(files == null) {
 				System.out.println("输入目录没有文件分片");
 				return 0;		
-			}
-			//分片排序
-			//Arrays.sort(files);排序结果错误
-			
+			}		
 			try {
 				String fileName = files[0].substring(0,files[0].lastIndexOf("_"));
 				String extName =  files[0].substring(files[0].lastIndexOf("."));
@@ -106,8 +103,7 @@ public class MergeFileServlet extends HttpServlet {
 				FileOutputStream outStream = new FileOutputStream(out, true);			
 		        FileChannel resultFileChannel =outStream.getChannel();
 		        for(int i=0;i<files.length;i++ ) {
-		        	//File chunk= new File(filePath);
-		        	String file = fpath + "\\" + fileName + "_" + Integer.toString(i) + extName;
+		        	String file = fpath + File.separator + fileName + "_" + Integer.toString(i) + extName;
 		        	FileInputStream inStream =new FileInputStream(file);
 		        	FileChannel chunkChannel = inStream.getChannel();
 			        resultFileChannel.transferFrom(chunkChannel, resultFileChannel.size(), chunkChannel.size());

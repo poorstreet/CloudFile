@@ -38,8 +38,8 @@ public class UploadHander_Ajax extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		ServletContext context = request.getServletContext();
-		String uploadTemp =context.getRealPath("/WEB-INF/UploadTemp");
-		String tempPath = context.getRealPath("/WEB-INF/temp");
+		String uploadTemp =context.getRealPath("/WEB-INF/UploadTemp/");
+		String tempPath = context.getRealPath("/WEB-INF/temp/");
 		File tmpFile = new File(tempPath);
 	     if (!tmpFile.exists()) {
 	      //创建临时目录
@@ -88,7 +88,6 @@ public class UploadHander_Ajax extends HttpServlet {
 					  int len = 0;
 					        //循环将输入流读入到缓冲区当中，(len=in.read(buffer))>0就表示in里面还有数据
 					  while((len=in.read(buffer))>0){
-					        //使用FileOutputStream输出流将缓冲区的数据写入到指定的目录(savePath + "\\" + filename)当中
 					       out.write(buffer, 0, len);
 					  }
 					 in.close();
@@ -114,14 +113,14 @@ public class UploadHander_Ajax extends HttpServlet {
 		 String filename = fileName.substring(0, fileName.lastIndexOf("."));
 		//得到上传文件的扩展名
 	     String fileExtName = fileName.substring(fileName.lastIndexOf("."));
-	     String dir = temPath+"\\"+uuid+"\\";
+	     String dir = temPath+uuid+File.separator;
 	     File file = new File(dir);
 		  //如果目录不存在
 		   if(!file.exists()){
 		    //创建目录
 		    file.mkdirs();
 		  }
-		return temPath+"\\"+uuid+"\\"+filename+"_"+currChunk+fileExtName;
+		return dir+filename+"_"+currChunk+fileExtName;
 	}
 
 }
