@@ -112,6 +112,7 @@ public class MergeFileServlet extends HttpServlet {
 		        }
 		        resultFileChannel.close();
 		        outStream.close();
+		        FileOperator.deletefiles(fpath);
 		        return 1;
 			} catch (FileNotFoundException e) {
 		        e.printStackTrace();

@@ -20,7 +20,7 @@ public class FileOperator {
 	public static Map<String, String> readDir(String filepath) throws FileNotFoundException, IOException {
 		Map<String, String> fileMap = new HashMap<String, String>();
 		File file = new File(filepath);
-		//非文件夹直接返回空的fileMap
+		// 非文件夹直接返回空的fileMap
 		if (!file.isDirectory()) {
 			return fileMap;
 		} else if (file.isDirectory()) {
@@ -49,7 +49,6 @@ public class FileOperator {
 					File delfile = new File(delpath + File.separator + filelist[i]);
 					if (!delfile.isDirectory()) {
 						delfile.delete();
-						System.out.println("删除文件成功");
 					} else if (delfile.isDirectory()) {
 						deletefiles(delpath + File.separator + filelist[i]);
 					}
@@ -71,7 +70,7 @@ public class FileOperator {
 	 * @return String (dir,mp4,pdf... )
 	 */
 	public static String getFileType(String fileName) {
-		if(fileName == null) {
+		if (fileName == null) {
 			return null;
 		}
 		String type = "";
@@ -83,8 +82,11 @@ public class FileOperator {
 		}
 		return type;
 	}
-	public static boolean transcoding(String inPath,String outPath) {
-		
+
+	public static boolean transcoding(String inPath, String outPath) {
+
 		return true;
 	}
 }
+
+ 

@@ -1,25 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>文件列表</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+<title>CloudFile</title>
+<meta name="keywords" content="CloudFile 云盘 网络U盘" />
+<meta name="description" content="CloudFile专注文件转存，文件在线查看，下载" />
+<title>查看文件</title>
 <!-- 如果需要使用jQuery,把它的引用放在最开头，避免使用未定义jQuery函数产生Undefined错误 -->
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/fileslist.js"></script>
 <style type="text/css">
-ul{
-	list-style-type:none;
+#header {
+	background-color: #FFFFFF;
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	width: 100%;
+	border-bottom-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
+
+#logo {
+	margin-left: 250px;
+	float: left;
+	display: inline-block;
+	height: 115px;
+	width: 200px;
+}
+
+#menu {
+	height: 115px;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+#menuul {
+	margin-top: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#menuul li {
+	display: inline-block;
+	width: 152px;
+	height: 80px;
+	text-align: center;
+	font-size: 15px;
+	padding-top: 35px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #000000;
+}
+
+a:visited {
+	color: #000000;
+}
+
+a:hover {
+	color: #bfbfbf;
+}
+
+a:active {
+	color: #000000;
+}
+
+#menuul li:hover {
+	background-color: #f2f2f2;
+	color: #000000;
+}
+
+#menuul li:active {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+#menuul li a {
+	color: #000000;
+}
+
+#filesList {
+	margin-right: 100px;
+	margin-left: 100px;
+	background-color: #ffffff;
+	margin-top: 175px;
+	display: block;
+	height: 542px;
+	align: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #787878;
+}
+#files {
+	align: center;
+}
+#listdiv{
+height:350px;
+overflow-y:auto;
+overflow-x:hidden;
+}
+table {
+	margin: auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+#list {
+text-align:left;
+}
+
+ul {
+	list-style-type: none;
 }
 </style>
 </head>
 <body>
+	<div class="sidebar">
+		<div id="header">
+			<div id="logo">
+				<img src="img/myicon.jpg" alt="CloudFileLogo" width="200px" />
+			</div>
+			<div id="menu">
+				<ul id="menuul">
+					<li><a href="index.html#home"><span>首页<br />Home
+						</span></a></li>
+					<li><a href="index.html#us"><span>关于我们<br />About
+								Us
+						</span></a></li>
+					<li><a href="index.html#upload"><span>文件上传<br />File
+								Upload
+						</span></a></li>
+					<li><a href="index.html#download"><span>文件下载<br />File
+								Download
+						</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div id="filesList">
 		<div id="files">
-			<ul id="list">
-				<li id="listHead">文件列表</li>
-
-			</ul>
-
+			<table id="filestable" border="1">
+				<tr>
+					<table border="0" width="70%">
+						<tr>
+							<td width="100%" style="height: 50px">文件列表</td>
+						</tr>
+					</table>
+				</tr>
+				<tr>
+				<div id="listdiv">
+					<table id="list" border="0" width="70%">
+					</table>
+				</div>
+				</tr>	
+			</table>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -36,28 +177,37 @@ ul{
 			}
 		});
 		//JSON.stringify(files)
-		for(var k in files){
-			
-			var url1="FileRequestManager?file="+k;
-			var url2= "FileDownload?file="+k;
+		for ( var k in files) {
+
+			var url1 = "FileRequestManager?file=" + k;
+			var url2 = "FileDownload?file=" + k;
 			var type = files[k].toLowerCase();
-			
-			if(type == "mp4"||type == "mp3"){
+
+			if (type == "mp4" || type == "mp3") {
 				//添加play动作
-				url1=url1+"&action=play";
-			}else if(type == "avi" || type =="wmv"||type == "mkv" || type == "flv"){
+				url1 = url1 + "&action=play";
+			} else if (type == "avi" || type == "wmv" || type == "mkv"
+					|| type == "flv") {
 				//添加transcoding动作
-				url1=url1+"&action=transcoding";
-			}else if(type == "pdf" ||type == "txt"){
+				url1 = url1 + "&action=transcoding";
+			} else if (type == "pdf" || type == "txt") {
 				//添加read动作
-				url1=url1+"&action=read";
-			}else{
-				url1='';
+				url1 = url1 + "&action=read";
+			} else {
+				url1 = '';
 			}
-			if(url1!=''){
-				$("<li class = 'list'>" + k + "<a class='request' href="+url1+" target='_blank'>查看</a><a class='request'  href="+url2+" target='_blank'>下载</a></li>").appendTo($("#list"));
-			}else{
-				$("<li class = 'list'>" + k + "<a class='request' href="+url2+" target='_blank'>下载</a></li>").appendTo($("#list"));
+			if (url1 != '') {
+				$(
+						"<tr class = 'list'><td width='60%'>"
+								+ k
+								+ "</td><td width='20%'><a class='request' href="+url1+" target='_blank'>查看</a></td><td width='20%'><a class='request'  href="+url2+" target='_blank'>下载</a></td></tr>")
+						.appendTo($("#list"));
+			} else {
+				$(
+						"<tr class = 'list'><td width='60%'>"
+								+ k
+								+ "</td><td width='20%'>暂不支持查看</td><td width='20%'><a class='request'  href="+url2+" target='_blank'>下载</a></td></tr>")
+						.appendTo($("#list"));
 			}
 		}
 	</script>

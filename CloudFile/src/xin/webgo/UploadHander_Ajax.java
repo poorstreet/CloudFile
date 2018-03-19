@@ -77,7 +77,6 @@ public class UploadHander_Ajax extends HttpServlet {
 		    		  String name = item.getFieldName();
 		    		  String value = item.getString("UTF-8");
 		    		  map.put(name, value);
-		    		  System.out.print(name);
 		    	  }
 		    	  else{//如果fileitem中封装的是上传文件
 		    		  in = item.getInputStream();

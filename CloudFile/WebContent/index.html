@@ -44,17 +44,37 @@
 #menuul li {
 	display: inline-block;
 	width: 152px;
-	height: 115px;
+	height: 80px;
 	text-align: center;
 	font-size: 15px;
 	padding-top: 35px;
+}
+
+a {
+	text-decoration: none;
+}
+#menuul li:hover {
+	background-color:  #f2f2f2;
+	color: #000000;
+}
+#menuul li:active {
+	background-color:  #FFFFFF;
+	color: #000000;
+}
+#menuul li a{
+	color: #000000;
+}
+}
+#mainpage {
+	width: 100%;
+	height: 650px;
 }
 
 #home {
 	margin-right: 100px;
 	margin-left: 100px;
 	background-color: #ffffff;
-	margin-top: 115px;
+	margin-top: 175px;
 	display: block;
 	height: 542px;
 	text-align: center;
@@ -164,26 +184,27 @@
 </style>
 </head>
 <body>
-	<div class="sidebar">
+	<div id="sidebar">
 		<div id="header">
 			<div id="logo">
 				<img src="img/myicon.jpg" alt="CloudFileLogo" width="200px" />
 			</div>
 			<div id="menu">
 				<ul id="menuul">
-					<li><a><span>首页<br />Home
+					<li><a href="#home"><span>首页<br />Home
 						</span></a></li>
-					<li><a><span>关于我们<br />About Us
+					<li><a href="#us"><span>关于我们<br />About Us
 						</span></a></li>
-					<li><a><span>文件上传<br />File Upload
+					<li><a href="#upload"><span>文件上传<br />File Upload
 						</span></a></li>
-					<li><a><span>文件上传<br />File Download
+					<li><a href="#download"><span>文件下载<br />File
+								Download
 						</span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
-	<div class="mainpage">
+	<div id="mainpage">
 		<div id="home">
 			<div id="home-text">
 				<p id="name-1">Cloud File</p>
@@ -230,7 +251,6 @@
 				<a href="fileslist.html" target="_blank">查看文件</a>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>

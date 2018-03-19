@@ -183,6 +183,9 @@ function drawProgress(progress){
 *“上传”按钮响应函数，
 */
 function doUpload() {
+	if(!filesArray){
+		return;
+	}
 	//清空已上传数据
 	progress = 0;
 	//上传按钮失效

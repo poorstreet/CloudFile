@@ -16,6 +16,7 @@
 	border-width: 2px;
 	border-color: #787878;
 }
+
 #logo {
 	margin-left: 250px;
 	float: left;
@@ -39,16 +40,32 @@
 #menuul li {
 	display: inline-block;
 	width: 152px;
-	height: 115px;
+	height: 80px;
 	text-align: center;
 	font-size: 15px;
 	padding-top: 35px;
 }
+
+a {
+	text-decoration: none;
+}
+#menuul li:hover {
+	background-color:  #f2f2f2;
+	color: #000000;
+}
+#menuul li:active {
+	background-color:  #FFFFFF;
+	color: #000000;
+}
+#menuul li a{
+	color: #000000;
+}
+
 #upload {
 	margin-right: 100px;
 	margin-left: 100px;
 	background-color: #ffffff;
-	margin-top: 115px;
+	margin-top: 175px;
 	display: block;
 	height: 542px;
 	text-align: center;
@@ -56,23 +73,30 @@
 	border-width: 2px;
 	border-color: #787878;
 }
-#choose{
-width:400px;
-display: inline-block;
-vertical-align:top;
+
+#choose {
+	width: 400px;
+	display: inline-block;
+	vertical-align: top;
 }
-#choose-text{
-margin-top:30px;
-margin-bottom:30px;
+
+#choose-text {
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
-#filesList{
-padding-left:60px;
-text-align: left;
+
+#filesList {
+	padding-left: 60px;
+	text-align: left;
+	overflow-y:auto;
+	overflow-x:hidden;
+	height:320px;
 }
-#progress{
-width:300px;
-display: inline-block;
-vertical-align:top;
+
+#progress {
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
 }
 </style>
 </head>
@@ -84,13 +108,13 @@ vertical-align:top;
 			</div>
 			<div id="menu">
 				<ul id="menuul">
-					<li><a><span>首页<br />Home
+					<li><a href="index.html#home"><span>首页<br />Home
 						</span></a></li>
-					<li><a><span>关于我们<br />About Us
+					<li><a href="index.html#us"><span>关于我们<br />About Us
 						</span></a></li>
-					<li><a><span>文件上传<br />File Upload
+					<li><a href="index.html#upload"><span>文件上传<br />File Upload
 						</span></a></li>
-					<li><a><span>文件上传<br />File Download
+					<li><a href="index.html#download"><span>文件下载<br />File Download
 						</span></a></li>
 				</ul>
 			</div>
@@ -99,14 +123,15 @@ vertical-align:top;
 	<div id="mainpage">
 		<div id="upload">
 			<div id="choose">
-			<div id="choose-text">
-				<p>请选择您需要上传的文件</p>
-				<p>注意：只能在同一目录下一次选择多个文件</p>
-			</div>
-			<div>
-				<input id="files" type="file" multiple="multiple" onchange="showFileList(this.files)" /> 
-				<input id="uploadBtn" type="button" value="上传" onclick="doUpload()"/>
-			</div>
+				<div id="choose-text">
+					<p>请选择您需要上传的文件</p>
+					<p>注意：只能在同一目录下一次选择多个文件</p>
+				</div>
+				<div>
+					<input id="files" type="file" multiple="multiple"
+						onchange="showFileList(this.files)" /> <input id="uploadBtn"
+						type="button" value="上传" onclick="doUpload()" />
+				</div>
 				<div id="filesList"></div>
 			</div>
 			<div id="progress">

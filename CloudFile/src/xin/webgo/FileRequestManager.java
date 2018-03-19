@@ -37,8 +37,8 @@ public class FileRequestManager extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8"); 
 		PrintWriter writer = response.getWriter();
 		if(action.equals("play")) {
-			writer.write("<video width=\"100%\" height=\"100%\" controls>\r\n" + 
-					"  <source src=\"/Web-INF/UploadFiles/"+file+"\" type=\"video/mp4\">\r\n" + 
+			writer.write("<video width=\"100%\" height=\"100%\" autoplay=\"true\" controls>\r\n" + 
+					" <source src=\"VideoPlaySevlet?video="+file+"\" type=\"video/mp4\">\r\n" + 
 					"您的浏览器不支持Video标签。\r\n" + 
 					"</video>");
 		}else {
